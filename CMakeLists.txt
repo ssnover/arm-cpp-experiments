@@ -63,7 +63,8 @@ target_compile_options(${PROJECT_NAME}
         -fdata-sections
         -mfloat-abi=hard
         -mfpu=fpv4-sp-d16
-        -flto)
+        #-flto # This was causing problems with the SysTick Handler, might need to define my own to use it
+        )
 target_compile_definitions(${PROJECT_NAME}
         PRIVATE
         -DUSE_HAL_DRIVER

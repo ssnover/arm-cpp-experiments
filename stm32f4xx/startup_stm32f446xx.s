@@ -123,6 +123,13 @@ LoopFillZerobss:
 */
     .section  .text.Default_Handler,"ax",%progbits
 Default_Handler:
+  /* Load the address of the interrupt control register into R3. */
+  ldr r3, =0xe000ed04
+  /* Load the value of the interrupt control register into R2 from the address
+     held in R3. */
+  ldr r2, [r3, #0]
+  /* The interrupt number is in the LSB, clear all other bits. */
+  uxtb r2, r2
 Infinite_Loop:
   b  Infinite_Loop
   .size  Default_Handler, .-Default_Handler
